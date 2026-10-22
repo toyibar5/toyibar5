@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kalkulator Sistem Bilangan</title>
+
+    <!-- Bootstrap CDN -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <style>
+        body {
+            background-color: #f1f5f9;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .kalkulator {
+            max-width: 550px;
+            width: 100%;
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .hasil {
+            background-color: #e8f3ff;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .nilai-hasil {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #0d6efd;
+            overflow-wrap: anywhere;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container p-3">
+    <div class="kalkulator mx-auto">
+
+        <h2 class="text-center mb-2">
+            Kalkulator Sistem Bilangan
+        </h2>
+
+        <p class="text-center text-muted mb-4">
+            Konversi bilangan dengan mudah
+        </p>
+
+        <!-- Input bilangan -->
+        <div class="mb-3">
+            <label for="bilangan" class="form-label">
+                Masukkan Bilangan
+            </label>
+            <input
+                type="text"
+                id="bilangan"
+                class="form-control"
+                placeholder="Contoh: 1010"
+            >
+        </div>
+
+        <!-- Sistem bilangan asal -->
+        <div class="mb-3">
+            <label for="asal" class="form-label">
+                Sistem Bilangan Input
+            </label>
+            <select id="asal" class="form-select">
+                <option value="2">Biner (Basis 2)</option>
+                <option value="8">Oktal (Basis 8)</option>
+                <option value="10" selected>Desimal (Basis 10)</option>
+                <option value="16">Heksadesimal (Basis 16)</option>
+            </select>
+        </div>
+
+        <!-- Sistem bilangan tujuan -->
+        <div class="mb-4">
+            <label for="tujuan" class="form-label">
+                Sistem Bilangan Hasil
+            </label>
+            <select id="tujuan" class="form-select">
+                <option value="2">Biner (Basis 2)</option>
+                <option value="8">Oktal (Basis 8)</option>
+                <option value="10">Desimal (Basis 10)</option>
+                <option value="16" selected>Heksadesimal (Basis 16)</option>
+            </select>
+        </div>
+
+        <!-- Tombol konversi -->
+        <button
+            type="button"
+            class="btn btn-primary w-100"
+            onclick="konversikan()"
+        >
+            Konversi
+        </button>
+
+        <!-- Hasil konversi -->
+        <div class="hasil">
+            <div class="text-muted mb-2">Hasil Konversi</div>
+            <div id="hasil" class="nilai-hasil">-</div>
+            <div id="keterangan" class="text-muted mt-2"></div>
+        </div>
+
+        <div id="pesan" class="text-danger text-center mt-3"></div>
+
+    </div>
+</div>
+
+<script>
+    function konversikan() {
+        const input = document.getElementById("bilangan").value.trim();
+        const asal = parseInt(document.getElementById("asal").value);
+        const tujuan = parseInt(document.getElementById("tujuan").value);
+
+        const hasil = document.getElementById("hasil");
+        const keterangan = document.getElementById("keterangan");
+        const pesan = document.getElementById("pesan");
+
+        // Reset tampilan
+        pesan.textContent = "";
+        hasil.textContent = "-";
+        keterangan.textContent = "";
+
+        // Validasi input kosong
+        if (input === "") {
+            pesan.textContent = "Silakan masukkan bilangan terlebih dahulu!";
+            return;
+        }
+
+        // Validasi digit berdasarkan sistem bilangan asal
+        const pola = {
+            2: /^[01]+$/,
+            8: /^[0-7]+$/,
+            10: /^[0-9]+$/,
+            16: /^[0-9a-fA-F]+$/
+        };
+
+        if (!pola[asal].test(input)) {
+            pesan.textContent =
+                "Input tidak valid untuk sistem bilangan yang dipilih!";
+            return;
+        }
+
+        // Konversi ke nilai desimal
+        const nilaiDesimal = parseInt(input, asal);
+
+        // Pastikan nilai dapat direpresentasikan dengan aman
+        if (!Number.isSafeInteger(nilaiDesimal)) {
+            pesan.textContent =
+                "Bilangan terlalu besar untuk diproses dengan aman.";
+            return;
+        }
+
+        // Konversi ke sistem bilangan tujuan
+        const nilaiHasil = nilaiDesimal
+            .toString(tujuan)
+            .toUpperCase();
+
+        // Tampilkan hasil
+        hasil.textContent = nilaiHasil;
+        keterangan.textContent =
+            "Basis " + asal + " → Basis " + tujuan;
+    }
+</script>
+
+</body>
+</html>
