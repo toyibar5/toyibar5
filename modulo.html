@@ -1,342 +1,148 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aplikasi Aritmatika Modular</title>
-
+    <title>
     <style>
-        * {
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-
         body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
             margin: 0;
             padding: 20px;
-            background: #eef2f7;
-            color: #263238;
+            color: #333;
         }
-
         .container {
-            max-width: 750px;
-            margin: auto;
+            max-width: 600px;
+            margin: 0 auto;
         }
-
-        header {
-            background: #174ea6;
-            color: white;
-            padding: 25px;
-            text-align: center;
-            border-radius: 12px;
-            margin-bottom: 20px;
-        }
-
         .card {
-            background: white;
+            background: #fff;
             padding: 20px;
-            margin-bottom: 18px;
-            border-radius: 12px;
-            box-shadow: 0 3px 10px #00000010;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
-
         h2 {
-            color: #174ea6;
             margin-top: 0;
+            color: #2c3e50;
         }
-
         label {
             display: block;
-            margin-top: 12px;
+            margin-bottom: 5px;
             font-weight: bold;
         }
-
-        input, select {
+        input {
             width: 100%;
-            padding: 12px;
-            margin-top: 7px;
+            padding: 8px;
+            margin-bottom: 15px;
             border: 1px solid #ccc;
-            border-radius: 7px;
-            font-size: 16px;
+            border-radius: 4px;
+            box-sizing: border-box;
         }
-
         button {
-            width: 100%;
-            padding: 13px;
-            margin-top: 18px;
-            border: none;
-            border-radius: 7px;
-            background: #174ea6;
+            background-color: #3498db;
             color: white;
+            border: none;
+            padding: 10px 15px;
+            width: 100%;
+            border-radius: 4px;
             font-size: 16px;
             cursor: pointer;
         }
-
         button:hover {
-            background: #0d3678;
+            background-color: #2980b9;
         }
-
-        .hasil {
-            margin-top: 18px;
-            padding: 15px;
-            background: #e8f1ff;
-            border-left: 5px solid #174ea6;
-            border-radius: 6px;
-            display: none;
-        }
-
-        .rumus {
-            font-size: 21px;
-            font-weight: bold;
-            color: #174ea6;
-            margin: 10px 0;
-        }
-
-        .contoh {
-            background: #f5f7fa;
-            padding: 12px;
-            border-radius: 7px;
-            margin-top: 10px;
+        .result {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #ebf5fb;
+            border-left: 4px solid #3498db;
+            border-radius: 4px;
         }
     </style>
 </head>
-
 <body>
 
 <div class="container">
-
-    <header>
-        <h1>Aritmatika Modular</h1>
-        <p>Implementasi Matematika Informasi</p>
-        <p>HTML, CSS, dan JavaScript</p>
-    </header>
-
+    <!-- Kalkulator Modulo Basik -->
     <div class="card">
-        <h2>Kalkulator Modular</h2>
+        <h2>Kalkulator Modulo Basik</h2>
+        
+        <label for="mod-a">Bilangan (a):</label>
+        <input type="number" id="mod-a" value="23">
 
-        <label>Bilangan Pertama (a)</label>
-        <input type="number" id="a" value="8">
+        <label for="mod-m">Modulus (m):</label>
+        <input type="number" id="mod-m" value="5">
 
-        <label>Operasi Matematika</label>
-        <select id="operasi">
-            <option value="tambah">Penjumlahan (+)</option>
-            <option value="kurang">Pengurangan (-)</option>
-            <option value="kali">Perkalian (×)</option>
-            <option value="pangkat">Perpangkatan (^)</option>
-        </select>
+        <button onclick="hitungModulo()">Hitung Modulo</button>
 
-        <label>Bilangan Kedua (b)</label>
-        <input type="number" id="b" value="7">
-
-        <label>Modulus (m)</label>
-        <input type="number" id="m" value="5" min="1">
-
-        <button onclick="hitung()">Hitung Modular</button>
-
-        <div class="hasil" id="hasil"></div>
-    </div>
-
-    <div class="card">
-        <h2>Contoh Penerapan: Sistem Jam</h2>
-
-        <label>Jam Sekarang (0-23)</label>
-        <input type="number" id="jam" value="9" min="0" max="23">
-
-        <label>Tambahan Jam</label>
-        <input type="number" id="tambahan" value="5">
-
-        <button onclick="hitungJam()">Hitung Jam</button>
-
-        <div class="hasil" id="hasilJam"></div>
-    </div>
-
-    <div class="card">
-        <h2>Latihan Soal</h2>
-
-        <p>Hitung hasil dari:</p>
-
-        <div class="rumus">
-            (17 + 8) mod 6 = ?
-        </div>
-
-        <input type="number" id="jawaban"
-               placeholder="Masukkan jawaban">
-
-        <button onclick="cekJawaban()">Periksa Jawaban</button>
-
-        <div class="hasil" id="hasilLatihan"></div>
-    </div>
-
-    <div class="card">
-        <h2>Pengertian</h2>
-
-        <p>
-            Aritmatika modular adalah sistem matematika
-            yang menggunakan sisa hasil pembagian.
-        </p>
-
-        <div class="contoh">
-            Contoh:
-            <br>
-            17 mod 5 = 2
-            <br>
-            Karena 17 dibagi 5 menghasilkan sisa 2.
+        <div class="result" id="hasil-modulo">
+            <strong>Hasil: 23 mod 5 = 3</strong><br>
+            <small>Penjelasan: 23 = 5 × 4 + 3</small>
         </div>
     </div>
 
+    <!-- Pengecek Kongruensi -->
+    <div class="card">
+        <h2>Pengecek Kongruensi</h2>
+        <p style="font-size: 14px; color: #666;">Memeriksa apakah pernyataan <em>a ≡ b (mod m)</em> bernilai Benar/Salah.</p>
+
+        <label for="cong-a">Nilai a:</label>
+        <input type="number" id="cong-a" value="38">
+
+        <label for="cong-b">Nilai b:</label>
+        <input type="number" id="cong-b" value="14">
+
+        <label for="cong-m">Modulus (m):</label>
+        <input type="number" id="cong-m" value="12">
+
+        <button onclick="cekKongruensi()">Cek Kongruensi</button>
+
+        <div class="result" id="hasil-kongruensi">
+            <strong>Hasil: 38 ≡ 14 (mod 12) adalah BENAR</strong><br>
+            <small>Penjelasan: (38 - 14) = 24, dan 24 habis dibagi 12.</small>
+        </div>
+    </div>
 </div>
 
 <script>
-
-    // Fungsi modulo agar hasil selalu nonnegatif
-    function modulo(a, m) {
-        return ((a % m) + m) % m;
-    }
-
-    // Fungsi kalkulator modular
-    function hitung() {
-
-        let a = Number(document.getElementById("a").value);
-        let b = Number(document.getElementById("b").value);
-        let m = Number(document.getElementById("m").value);
-
-        let operasi = document.getElementById("operasi").value;
-        let hasil;
-        let rumus;
-
-        if (
-            document.getElementById("a").value === "" ||
-            document.getElementById("b").value === "" ||
-            document.getElementById("m").value === "" ||
-            !Number.isSafeInteger(a) ||
-            !Number.isSafeInteger(b) ||
-            !Number.isSafeInteger(m) ||
-            m <= 0
-        ) {
-            alert("Masukkan bilangan bulat yang valid dan modulus lebih dari 0!");
+    function hitungModulo() {
+        const a = parseInt(document.getElementById('mod-a').value);
+        const m = parseInt(document.getElementById('mod-m').value);
+        
+        if (isNaN(a) || isNaN(m) || m === 0) {
+            alert("Masukkan angka yang valid dan modulus tidak boleh 0.");
             return;
         }
 
-        switch (operasi) {
-
-            case "tambah":
-                hasil = modulo(a + b, m);
-                rumus = `(${a} + ${b}) mod ${m}`;
-                break;
-
-            case "kurang":
-                hasil = modulo(a - b, m);
-                rumus = `(${a} - ${b}) mod ${m}`;
-                break;
-
-            case "kali":
-                hasil = modulo(a * b, m);
-                rumus = `(${a} × ${b}) mod ${m}`;
-                break;
-
-            case "pangkat":
-                if (b < 0) {
-                    alert("Pangkat harus bilangan bulat nonnegatif!");
-                    return;
-                }
-
-                hasil = pangkatModular(a, b, m);
-                rumus = `${a}^${b} mod ${m}`;
-                break;
-        }
-
-        let output = document.getElementById("hasil");
-
-        output.style.display = "block";
-
-        output.innerHTML = `
-            <h3>Hasil Perhitungan</h3>
-            <p>Rumus: ${rumus}</p>
-            <div class="rumus">Hasil = ${hasil}</div>
-            <p>Perhitungan dilakukan menggunakan operasi modulo ${m}.</p>
-        `;
+        const hasil = ((a % m) + m) % m; // Menangani modulus negatif dengan aman
+        const q = Math.floor(a / m);
+        
+        const hasilDiv = document.getElementById('hasil-modulo');
+        hasilDiv.innerHTML = `<strong>Hasil: ${a} mod ${m} = ${hasil}</strong><br><small>Penjelasan: ${a} = ${m} × ${q} + ${hasil}</small>`;
     }
 
-    // Fungsi perpangkatan modular
-    function pangkatModular(a, b, m) {
+    function cekKongruensi() {
+        const a = parseInt(document.getElementById('cong-a').value);
+        const b = parseInt(document.getElementById('cong-b').value);
+        const m = parseInt(document.getElementById('cong-m').value);
 
-        let hasil = 1;
-        let dasar = modulo(a, m);
-
-        while (b > 0) {
-
-            if (b % 2 === 1) {
-                hasil = (hasil * dasar) % m;
-            }
-
-            dasar = (dasar * dasar) % m;
-            b = Math.floor(b / 2);
-        }
-
-        return hasil;
-    }
-
-    // Implementasi modulo pada sistem jam 24 jam
-    function hitungJam() {
-
-        let jam = Number(document.getElementById("jam").value);
-        let tambahan = Number(
-            document.getElementById("tambahan").value
-        );
-
-        if (
-            !Number.isSafeInteger(jam) ||
-            !Number.isSafeInteger(tambahan) ||
-            jam < 0 ||
-            jam > 23
-        ) {
-            alert("Masukkan jam 0-23 dan tambahan jam berupa bilangan bulat!");
+        if (isNaN(a) || isNaN(b) || isNaN(m) || m === 0) {
+            alert("Masukkan angka yang valid dan modulus tidak boleh 0.");
             return;
         }
 
-        let hasil = modulo(jam + tambahan, 24);
+        const selisih = Math.abs(a - b);
+        const isBenar = selisih % m === 0;
+        const status = isBenar ? "BENAR" : "SALAH";
 
-        let output = document.getElementById("hasilJam");
-
-        output.style.display = "block";
-
-        output.innerHTML = `
-            <h3>Hasil Perhitungan Jam</h3>
-            <p>(${jam} + ${tambahan}) mod 24</p>
-            <div class="rumus">
-                Pukul ${String(hasil).padStart(2, "0")}.00
-            </div>
-        `;
+        const hasilDiv = document.getElementById('hasil-kongruensi');
+        hasilDiv.innerHTML = `<strong>Hasil: ${a} ≡ ${b} (mod ${m}) adalah ${status}</strong><br><small>Penjelasan: (${a} - ${b}) = ${a - b}, dan ${selisih} ${isBenar ? "habis" : "tidak habis"} dibagi ${m}.</small>`;
     }
-
-    // Fungsi pemeriksaan latihan
-    function cekJawaban() {
-
-        let jawaban = Number(
-            document.getElementById("jawaban").value
-        );
-
-        let output = document.getElementById("hasilLatihan");
-
-        output.style.display = "block";
-
-        if (jawaban === 1) {
-            output.innerHTML = `
-                <h3>Jawaban Benar!</h3>
-                <p>17 + 8 = 25</p>
-                <p>25 mod 6 = 1</p>
-            `;
-        } else {
-            output.innerHTML = `
-                <h3>Jawaban Belum Tepat</h3>
-                <p>Petunjuk: 17 + 8 = 25.</p>
-                <p>25 dibagi 6 memiliki sisa 1.</p>
-            `;
-        }
-    }
-
 </script>
 
 </body>
 </html>
+
+          
