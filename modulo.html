@@ -1,1 +1,205 @@
-kalkulator modulo
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toyib Abdul Rahman - 262605006 - Kalkulator Aritmatika Modular Informatika</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 700px; margin: 30px auto; padding: 20px; background-color: #f0f2f5; color: #333; }
+        h1 { text-align: center; color: #1a73e8; margin-bottom: 30px; }
+        .card { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); margin-bottom: 25px; border-top: 4px solid #1a73e8; }
+        .card h2 { margin-top: 0; color: #202124; font-size: 1.3rem; display: flex; align-items: center; gap: 8px; }
+        .card p { color: #5f6368; font-size: 0.9rem; margin-top: -5px; margin-bottom: 20px; }
+        .grid-inputs { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 15px; margin-bottom: 15px; }
+        .input-group { display: flex; flex-direction: column; }
+        label { font-weight: 600; margin-bottom: 6px; color: #4a4a4a; font-size: 0.85rem; }
+        input { padding: 10px; border: 1px solid #dadce0; border-radius: 6px; font-size: 1rem; transition: border 0.2s; }
+        input:focus { border-color: #1a73e8; outline: none; }
+        button { background-color: #1a73e8; color: white; border: none; padding: 12px; border-radius: 6px; cursor: pointer; font-size: 0.95rem; font-weight: bold; width: 100%; transition: background 0.2s; }
+        button:hover { background-color: #1557b0; }
+        .result { margin-top: 15px; padding: 12px 15px; background-color: #f8f9fa; border-left: 5px solid #34a853; font-weight: 500; border-radius: 6px; font-size: 0.95rem; line-height: 1.5; white-space: pre-line; }
+        .error { border-left-color: #ea4335; background-color: #fce8e6; color: #c5221f; }
+        .badge { background: #e8f0fe; color: #1a73e8; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <h1>Aritmatika Modular <span style="font-size: 1.2rem; display:block; color:#5f6368; font-weight:normal; margin-top:5px;">Implementasi HTML5 & JavaScript</span></h1>
+
+    <!-- 1. MODULO DASAR & NEGATIF -->
+    <div class="card">
+        <h2>1. Modulo Dasar & Bilangan Negatif</h2>
+        <p>Menghitung sisa hasil bagi murni matematika dari operasi <em>a mod m</em>.</p>
+        <div class="grid-inputs">
+            <div class="input-group">
+                <label>Bilangan (a)</label>
+                <input type="number" id="baseA" value="-9">
+            </div>
+            <div class="input-group">
+                <label>Modulus (m)</label>
+                <input type="number" id="modM" value="7">
+            </div>
+        </div>
+        <button onclick="runModulo()">Hitung Modulo</button>
+        <div id="resModulo" class="result">Masukkan nilai lalu klik tombol di atas.</div>
+    </div>
+
+    <!-- 2. EKSPONESIASI MODULAR (PANGKAT BESAR) -->
+    <div class="card">
+        <h2>2. Eksponensiasi Modular <span class="badge">Algoritma O(log n)</span></h2>
+        <p>Menghitung perpangkatan besar <em>a<sup>b</sup> mod m</em> tanpa mengalami <em>integer overflow</em>.</p>
+        <div class="grid-inputs">
+            <div class="input-group">
+                <label>Bilangan Basis (a)</label>
+                <input type="number" id="expA" value="7">
+            </div>
+            <div class="input-group">
+                <label>Pangkat / Eksponen (b)</label>
+                <input type="number" id="expB" value="256">
+            </div>
+            <div class="input-group">
+                <label>Modulus (m)</label>
+                <input type="number" id="expM" value="13">
+            </div>
+        </div>
+        <button onclick="runExponentiation()">Hitung Pangkat Modulo</button>
+        <div id="resExp" class="result">Masukkan nilai lalu klik tombol di atas.</div>
+    </div>
+
+    <!-- 3. INVERS MODULAR -->
+    <div class="card">
+        <h2>3. Invers Perkalian Modular <span class="badge">Extended Euclidean</span></h2>
+        <p>Mencari nilai <em>x</em> pembagi modular yang memenuhi kongruensi <em>(a × x) ≡ 1 (mod m)</em>.</p>
+        <div class="grid-inputs">
+            <div class="input-group">
+                <label>Bilangan (a)</label>
+                <input type="number" id="invA" value="3">
+            </div>
+            <div class="input-group">
+                <label>Modulus (m)</label>
+                <input type="number" id="invM" value="11">
+            </div>
+        </div>
+        <button onclick="runInverse()">Cari Invers Modular</button>
+        <div id="resInv" class="result">Masukkan nilai lalu klik tombol di atas.</div>
+    </div>
+
+    <script>
+        // --- HELPER CORE MATHEMATICS ---
+
+        // Fungsi modulo matematika murni (aman untuk angka negatif)
+        function mod(a, m) {
+            return ((a % m) + m) % m;
+        }
+
+        // Fungsi FPB / GCD (Greatest Common Divisor)
+        function gcd(x, y) {
+            while (y) {
+                let t = y;
+                y = x % y;
+                x = t;
+            }
+            return Math.abs(x);
+        }
+
+        // --- FUNGSI IMPLEMENTASI UI ---
+
+        // 1. Eksekusi Modulo Dasar
+        function runModulo() {
+            const a = parseInt(document.getElementById('baseA').value);
+            const m = parseInt(document.getElementById('modM').value);
+            const el = document.getElementById('resModulo');
+
+            if (isNaN(a) || isNaN(m)) return uiError(el, "Semua input harus diisi berupa angka!");
+            if (m <= 0) return uiError(el, "Modulus (m) harus merupakan bilangan bulat positif (> 0)!");
+
+            const hasil = mod(a, m);
+            uiSuccess(el, `Hasil: ${a} mod ${m} = ${hasil}\nKeterangan: Di dalam komputer, sisa pembagian murni matematika selalu menghasilkan nilai non-negatif.`);
+        }
+
+        // 2. Eksekusi Eksponensiasi Modular (Fast Exponentiation / Binary Exponentiation)
+        function runExponentiation() {
+            let a = parseInt(document.getElementById('expA').value);
+            let b = parseInt(document.getElementById('expB').value);
+            const m = parseInt(document.getElementById('expM').value);
+            const el = document.getElementById('resExp');
+
+            if (isNaN(a) || isNaN(b) || isNaN(m)) return uiError(el, "Semua input harus diisi berupa angka!");
+            if (b < 0) return uiError(el, "Pangkat (b) tidak boleh negatif dalam kalkulator dasar ini!");
+            if (m <= 0) return uiError(el, "Modulus (m) harus lebih besar dari 0!");
+
+            const originalA = a;
+            const originalB = b;
+
+            // Logika inti Fast Exponentiation O(log n)
+            let hasil = 1n; // Menggunakan BigInt untuk presisi tinggi di JS
+            let base = BigInt(mod(a, m));
+            let exp = BigInt(b);
+            let modVal = BigInt(m);
+
+            while (exp > 0n) {
+                // Jika exp ganjil, kalikan base dengan hasil
+                if (exp % 2n === 1n) {
+                    hasil = (hasil * base) % modVal;
+                }
+                // exp harus genap sekarang, bagi dua pangkatnya dan kuadratkan basisnya
+                exp = exp / 2n;
+                base = (base * base) % modVal;
+            }
+
+            uiSuccess(el, `Hasil: ${originalA}<sup>${originalB}</sup> mod ${m} = ${hasil.toString()}\n\nAlgoritma: Menggunakan skema Binary Exponentiation. Komputer memecah perpangkatan secara biner sehingga tidak memicu error 'Infinity' atau Stack Overflow.`);
+        }
+
+        // 3. Eksekusi Invers Modular dengan Extended Euclidean
+        function runInverse() {
+            const a = parseInt(document.getElementById('invA').value);
+            const m = parseInt(document.getElementById('invM').value);
+            const el = document.getElementById('resInv');
+
+            if (isNaN(a) || isNaN(m)) return uiError(el, "Semua input harus diisi berupa angka!");
+            if (m <= 0) return uiError(el, "Modulus (m) harus lebih besar dari 0!");
+
+            const nilaiFpb = gcd(a, m);
+            if (nilaiFpb !== 1) {
+                return uiError(el, `Invers Modular TIDAK ADA!\nSyarat mutlak invers modular adalah FPB(a, m) harus sama dengan 1 (Saling Prima).\nFakta: FPB(${a}, ${m}) = ${nilaiFpb}.`);
+            }
+
+            // Algoritma Extended Euclidean 
+            let m0 = m;
+            let y = 0, x = 1;
+            let tempA = mod(a, m); // pastikan a positif di dalam ring m
+            let tempM = m;
+
+            if (m === 1) return uiSuccess(el, "Hasil: x = 0");
+
+            while (tempA > 1) {
+                let q = Math.floor(tempA / tempM);
+                let t = tempM;
+
+                tempM = tempA % tempM;
+                tempA = t;
+                t = y;
+
+                y = x - q * y;
+                x = t;
+            }
+
+            if (x < 0) x += m0;
+
+            uiSuccess(el, `Hasil Invers (x) = ${x}\n\nBukti Kebenaran:\n(${a} × ${x}) mod ${m} = 1\n${a * x} mod ${m} = ${(a * x) % m} (Terbukti Terkongruensi 1)`);
+        }
+
+        // --- HELPER MANIPULASI DOM UI ---
+        function uiSuccess(element, text) {
+            element.className = "result";
+            element.innerHTML = text;
+        }
+
+        function uiError(element, text) {
+            element.className = "result error";
+            element.innerHTML = text;
+        }
+    </script>
+</body>
+</html>
+
