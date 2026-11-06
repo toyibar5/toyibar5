@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biodata dan Bukti Belajar MAFI</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+<header>
+    <nav>
+        <h2>∑ Ruang Belajar</h2>
+        <div class="nav-links">
+            <a href="#beranda">Beranda</a>
+            <a href="#biodata">Biodata</a>
+            <a href="#bukti-belajar">Bukti Belajar</a>
+        </div>
+    </nav>
+</header>
+
+<section class="hero" id="beranda">
+    <div>
+        <h1>Belajar Matematika,<br>
+        Membangun Solusi.</h1>
+        <p>Website Biodata Online dan Portofolio
+        Pembelajaran Matematika Informatika.</p>
+        <a href="#bukti-belajar" class="btn">Mulai Belajar</a>
+    </div>
+</section>
+
+<section class="container" id="biodata">
+    <h2>Biodata Pribadi</h2>
+
+    <div class="profile">
+        <div class="avatar">MA</div>
+
+        <div>
+            <h3>Nama Mahasiswa</h3>
+            <p>Mahasiswa Sistem Informasi</p>
+
+            <p><b>NIM:</b> Isi NIM kamu</p>
+            <p><b>Universitas:</b> Masoem University</p>
+            <p><b>Program Studi:</b> Sistem Informasi</p>
+            <p><b>Mata Kuliah:</b> Matematika Informatika</p>
+
+            <p>
+                Saya sedang mempelajari penerapan konsep
+                matematika dalam dunia komputasi.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="learning" id="bukti-belajar">
+    <div class="container">
+
+        <h2>Bukti Belajar</h2>
+
+        <p class="subtitle">
+            Perjalanan belajar Matematika Informatika
+            bersama Pa Iin TA 20261
+        </p>
+
+        <div class="calculator-grid">
+
+            <!-- LEVEL 1 -->
+            <div class="card">
+                <h3>Level 1 - Modulo Calculator</h3>
+
+                <label>Bilangan a</label>
+                <input type="number" id="modA">
+
+                <label>Modulus m</label>
+                <input type="number" id="modM">
+
+                <button onclick="hitungModulo()">Hitung</button>
+
+                <div id="modResult" class="result"></div>
+            </div>
+
+            <!-- LEVEL 2 -->
+            <div class="card">
+                <h3>Level 2 - Congruence Checker</h3>
+
+                <label>Bilangan a</label>
+                <input type="number" id="conA">
+
+                <label>Bilangan b</label>
+                <input type="number" id="conB">
+
+                <label>Modulus m</label>
+                <input type="number" id="conM">
+
+                <button onclick="cekKongruensi()">Periksa</button>
+
+                <div id="conResult" class="result"></div>
+            </div>
+
+            <!-- LEVEL 5 -->
+            <div class="card">
+                <h3>Level 5 - Number System Calculator</h3>
+
+                <label>Masukkan Bilangan</label>
+                <input type="text" id="numberInput">
+
+                <label>Basis Bilangan</label>
+                <select id="numberBase">
+                    <option value="2">Biner</option>
+                    <option value="10" selected>Desimal</option>
+                    <option value="8">Oktal</option>
+                    <option value="16">Heksadesimal</option>
+                </select>
+
+                <button onclick="konversiBilangan()">Konversi</button>
+
+                <div id="numberResult" class="result"></div>
+            </div>
+
+            <!-- LEVEL 6 -->
+            <div class="card">
+                <h3>Level 6 - Combinatorics Calculator</h3>
+
+                <label>Nilai n</label>
+                <input type="number" id="combN">
+
+                <label>Nilai r</label>
+                <input type="number" id="combR">
+
+                <button onclick="hitungKombinatorika()">Hitung</button>
+
+                <div id="combResult" class="result"></div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 - Portofolio Matematika Informatika</p>
+</footer>
+
+</body>
+</html>
