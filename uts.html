@@ -1,145 +1,248 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biodata dan Bukti Belajar MAFI</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
-</head>
-<body>
+// ==================================
+// LEVEL 1 - MODULO CALCULATOR
+// ==================================
 
-<header>
-    <nav>
-        <h2>∑ Ruang Belajar</h2>
-        <div class="nav-links">
-            <a href="#beranda">Beranda</a>
-            <a href="#biodata">Biodata</a>
-            <a href="#bukti-belajar">Bukti Belajar</a>
-        </div>
-    </nav>
-</header>
+function hitungModulo() {
 
-<section class="hero" id="beranda">
-    <div>
-        <h1>Belajar Matematika,<br>
-        Membangun Solusi.</h1>
-        <p>Website Biodata Online dan Portofolio
-        Pembelajaran Matematika Informatika.</p>
-        <a href="#bukti-belajar" class="btn">Mulai Belajar</a>
-    </div>
-</section>
+    let a = Number(document.getElementById("modA").value);
+    let m = Number(document.getElementById("modM").value);
 
-<section class="container" id="biodata">
-    <h2>Biodata Pribadi</h2>
+    let hasil = document.getElementById("modResult");
 
-    <div class="profile">
-        <div class="avatar">MA</div>
+    if (
+        document.getElementById("modA").value.trim() === "" ||
+        document.getElementById("modM").value.trim() === "" ||
+        !Number.isSafeInteger(a) ||
+        !Number.isSafeInteger(m)
+    ) {
+        hasil.innerHTML = '<span class="error">Masukkan bilangan bulat yang valid!</span>';
+        return;
+    }
 
-        <div>
-            <h3>Nama Mahasiswa</h3>
-            <p>Mahasiswa Sistem Informasi</p>
+    if (m <= 0) {
+        hasil.innerHTML = '<span class="error">Modulus harus positif!</span>';
+        return;
+    }
 
-            <p><b>NIM:</b> Isi NIM kamu</p>
-            <p><b>Universitas:</b> Masoem University</p>
-            <p><b>Program Studi:</b> Sistem Informasi</p>
-            <p><b>Mata Kuliah:</b> Matematika Informatika</p>
+    let sisa = ((a % m) + m) % m;
+    let pembagi = (a - sisa) / m;
 
-            <p>
-                Saya sedang mempelajari penerapan konsep
-                matematika dalam dunia komputasi.
-            </p>
-        </div>
-    </div>
-</section>
+    hasil.innerHTML = `
+        <strong>Hasil:</strong>
+        <h3>${a} mod ${m} = ${sisa}</h3>
 
-<section class="learning" id="bukti-belajar">
-    <div class="container">
+        <strong>Proses:</strong><br>
+        ${a} = (${pembagi} × ${m}) + ${sisa}<br>
 
-        <h2>Bukti Belajar</h2>
+        Sisa pembagian adalah ${sisa}.
+    `;
+}
 
-        <p class="subtitle">
-            Perjalanan belajar Matematika Informatika
-            bersama Pa Iin TA 20261
-        </p>
 
-        <div class="calculator-grid">
+// ==================================
+// LEVEL 2 - CONGRUENCE CHECKER
+// ==================================
 
-            <!-- LEVEL 1 -->
-            <div class="card">
-                <h3>Level 1 - Modulo Calculator</h3>
+function cekKongruensi() {
 
-                <label>Bilangan a</label>
-                <input type="number" id="modA">
+    let a = Number(document.getElementById("conA").value);
+    let b = Number(document.getElementById("conB").value);
+    let m = Number(document.getElementById("conM").value);
 
-                <label>Modulus m</label>
-                <input type="number" id="modM">
+    let hasil = document.getElementById("conResult");
 
-                <button onclick="hitungModulo()">Hitung</button>
+    if (
+        document.getElementById("conA").value.trim() === "" ||
+        document.getElementById("conB").value.trim() === "" ||
+        document.getElementById("conM").value.trim() === "" ||
+        !Number.isSafeInteger(a) ||
+        !Number.isSafeInteger(b) ||
+        !Number.isSafeInteger(m)
+    ) {
+        hasil.innerHTML = '<span class="error">Semua input harus berupa bilangan bulat!</span>';
+        return;
+    }
 
-                <div id="modResult" class="result"></div>
-            </div>
+    if (m <= 0) {
+        hasil.innerHTML = '<span class="error">Modulus harus positif!</span>';
+        return;
+    }
 
-            <!-- LEVEL 2 -->
-            <div class="card">
-                <h3>Level 2 - Congruence Checker</h3>
+    let selisih = a - b;
+    let sisa = ((selisih % m) + m) % m;
 
-                <label>Bilangan a</label>
-                <input type="number" id="conA">
+    if (sisa === 0) {
 
-                <label>Bilangan b</label>
-                <input type="number" id="conB">
+        hasil.innerHTML = `
+            <strong>Status: KONGRUEN</strong>
+            <h3>${a} ≡ ${b} (mod ${m})</h3>
 
-                <label>Modulus m</label>
-                <input type="number" id="conM">
+            Proses:<br>
+            a - b = ${a} - ${b} = ${selisih}<br>
+            ${selisih} mod ${m} = 0<br>
+            Jadi kedua bilangan kongruen.
+        `;
 
-                <button onclick="cekKongruensi()">Periksa</button>
+    } else {
 
-                <div id="conResult" class="result"></div>
-            </div>
+        hasil.innerHTML = `
+            <strong>Status: TIDAK KONGRUEN</strong>
+            <h3>${a} ≢ ${b} (mod ${m})</h3>
 
-            <!-- LEVEL 5 -->
-            <div class="card">
-                <h3>Level 5 - Number System Calculator</h3>
+            Proses:<br>
+            a - b = ${a} - ${b} = ${selisih}<br>
+            ${selisih} mod ${m} = ${sisa}<br>
+            Jadi kedua bilangan tidak kongruen.
+        `;
+    }
+}
 
-                <label>Masukkan Bilangan</label>
-                <input type="text" id="numberInput">
 
-                <label>Basis Bilangan</label>
-                <select id="numberBase">
-                    <option value="2">Biner</option>
-                    <option value="10" selected>Desimal</option>
-                    <option value="8">Oktal</option>
-                    <option value="16">Heksadesimal</option>
-                </select>
+// ==================================
+// LEVEL 5 - NUMBER SYSTEM CALCULATOR
+// ==================================
 
-                <button onclick="konversiBilangan()">Konversi</button>
+function konversiBilangan() {
 
-                <div id="numberResult" class="result"></div>
-            </div>
+    let input = document.getElementById("numberInput").value.trim();
 
-            <!-- LEVEL 6 -->
-            <div class="card">
-                <h3>Level 6 - Combinatorics Calculator</h3>
+    let basis = Number(document.getElementById("numberBase").value);
 
-                <label>Nilai n</label>
-                <input type="number" id="combN">
+    let hasil = document.getElementById("numberResult");
 
-                <label>Nilai r</label>
-                <input type="number" id="combR">
+    if (input === "") {
+        hasil.innerHTML = '<span class="error">Masukkan bilangan terlebih dahulu!</span>';
+        return;
+    }
 
-                <button onclick="hitungKombinatorika()">Hitung</button>
+    try {
 
-                <div id="combResult" class="result"></div>
-            </div>
+        let angka = input.toUpperCase();
+        let tanda = 1n;
 
-        </div>
-    </div>
-</section>
+        if (angka.startsWith("-")) {
+            tanda = -1n;
+            angka = angka.substring(1);
+        }
 
-<footer>
-    <p>© 2026 - Portofolio Matematika Informatika</p>
-</footer>
+        if (angka === "") {
+            throw new Error("Masukkan digit yang valid.");
+        }
 
-</body>
-</html>
+        const digit = "0123456789ABCDEF";
+
+        let nilai = 0n;
+
+        for (let karakter of angka) {
+
+            let angkaDigit = digit.indexOf(karakter);
+
+            if (angkaDigit < 0 || angkaDigit >= basis) {
+                throw new Error("Digit tidak sesuai dengan basis bilangan!");
+            }
+
+            nilai = nilai * BigInt(basis) + BigInt(angkaDigit);
+        }
+
+        nilai *= tanda;
+
+        hasil.innerHTML = `
+            <strong>Hasil Konversi:</strong>
+            <ul>
+                <li>Biner: ${nilai.toString(2)}</li>
+                <li>Desimal: ${nilai.toString(10)}</li>
+                <li>Oktal: ${nilai.toString(8)}</li>
+                <li>Heksadesimal: ${nilai.toString(16).toUpperCase()}</li>
+            </ul>
+        `;
+
+    } catch (error) {
+
+        hasil.innerHTML = `
+            <span class="error">${error.message}</span>
+        `;
+    }
+}
+
+
+// ==================================
+// LEVEL 6 - COMBINATORICS CALCULATOR
+// ==================================
+
+function faktorial(n) {
+
+    let hasil = 1n;
+
+    for (let i = 1; i <= n; i++) {
+        hasil *= BigInt(i);
+    }
+
+    return hasil;
+}
+
+
+function hitungKombinatorika() {
+
+    let n = Number(document.getElementById("combN").value);
+    let r = Number(document.getElementById("combR").value);
+
+    let hasil = document.getElementById("combResult");
+
+    if (
+        document.getElementById("combN").value.trim() === "" ||
+        document.getElementById("combR").value.trim() === "" ||
+        !Number.isSafeInteger(n) ||
+        !Number.isSafeInteger(r)
+    ) {
+        hasil.innerHTML = '<span class="error">Masukkan bilangan bulat yang valid!</span>';
+        return;
+    }
+
+    if (n < 0 || r < 0 || r > n) {
+
+        hasil.innerHTML = `
+            <span class="error">
+                Syarat harus terpenuhi: 0 ≤ r ≤ n.
+            </span>
+        `;
+
+        return;
+    }
+
+    if (n > 500) {
+        hasil.innerHTML = '<span class="error">Nilai n maksimal 500.</span>';
+        return;
+    }
+
+    // Menghitung permutasi
+    let permutasi = faktorial(n) / faktorial(n - r);
+
+    // Menghitung kombinasi
+    let kombinasi =
+        faktorial(n) /
+        (faktorial(r) * faktorial(n - r));
+
+    hasil.innerHTML = `
+
+        <strong>PERMUTASI</strong>
+
+        <h3>P(${n},${r}) = ${permutasi}</h3>
+
+        Rumus:<br>
+        P(n,r) = n! / (n-r)!
+
+        <br><br>
+
+        <strong>KOMBINASI</strong>
+
+        <h3>C(${n},${r}) = ${kombinasi}</h3>
+
+        Rumus:<br>
+        C(n,r) = n! / (r!(n-r)!)
+
+        <br><br>
+
+        Permutasi memperhatikan urutan,
+        sedangkan kombinasi tidak memperhatikan urutan.
+    `;
+}
