@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f2f4ed">
-  <title>Matematika Informatika</title>
+  <title>Ruang Belajar | Biodata & Matematika Informatika</title>
   <style>
     :root {
       --ink: #1b3029;
@@ -60,7 +60,7 @@
       height: 30px;
       place-items: center;
       color: var(--green-dark);
-      background: var(--pink);
+      background: var(--lime);
       border-radius: 5px;
       font-family: var(--mono);
       font-size: 13px;
@@ -382,6 +382,203 @@
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { scroll-behavior: auto !important; }
     }
+
+    :root {
+      --ink: #e4eff2;
+      --muted: #9aadb5;
+      --paper: #091117;
+      --white: #101b23;
+      --green: #00cdb8;
+      --green-dark: #07151b;
+      --lime: #d7ff63;
+      --coral: #ff805e;
+      --line: #263b45;
+      font-family: "Bahnschrift", "Aptos", "Segoe UI", sans-serif;
+      color-scheme: dark;
+      background: var(--paper);
+    }
+
+    body {
+      background-color: var(--paper);
+      background-image: linear-gradient(rgb(76 118 128 / 7%) 1px, transparent 1px), linear-gradient(90deg, rgb(76 118 128 / 7%) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+
+    .site-header {
+      background: rgb(7 17 23 / 92%);
+      border-bottom-color: #29414b;
+      box-shadow: 0 8px 26px rgb(0 0 0 / 20%);
+    }
+    .brand { letter-spacing: 1.2px; }
+    .brand-mark {
+      color: #07151b;
+      background: var(--green);
+      border-radius: 2px;
+      box-shadow: 0 0 18px rgb(0 205 184 / 25%);
+    }
+    nav a { color: #a7bac1; border-bottom-width: 2px; }
+    nav a:hover, nav a:focus-visible { color: var(--lime); border-color: var(--green); }
+
+    .hero {
+      background-color: #08151c;
+      background-image: linear-gradient(115deg, #08151c 12%, #0c2028 70%, #10242b);
+      border-bottom: 1px solid #28434a;
+    }
+    .hero-inner { min-height: 430px; }
+    h1, h2, .bio-copy h3, .tool h3 {
+      font-family: "Bahnschrift", "Aptos Display", "Segoe UI", sans-serif;
+      letter-spacing: 0;
+    }
+    h1 { max-width: 640px; font-size: 62px; font-weight: 700; line-height: 1.04; }
+    h2 { font-size: 46px; font-weight: 650; }
+    .eyebrow, .section-kicker { color: var(--green); letter-spacing: 1.4px; }
+    .hero-copy { color: #a9bdc3; }
+    .hero-link {
+      color: #06151a;
+      background: var(--lime);
+      border-radius: 2px;
+      box-shadow: 0 0 22px rgb(215 255 99 / 13%);
+      transition: transform 160ms ease, box-shadow 160ms ease;
+    }
+    .hero-link:hover { background: #e4ff91; box-shadow: 0 0 28px rgb(215 255 99 / 24%); transform: translateY(-2px); }
+
+    .number-art {
+      min-height: 270px;
+      border-color: #35616a;
+      background-color: #0a1a21;
+      background-image: linear-gradient(rgb(71 145 151 / 13%) 1px, transparent 1px), linear-gradient(90deg, rgb(71 145 151 / 13%) 1px, transparent 1px);
+      background-size: 24px 24px;
+      box-shadow: inset 0 0 55px rgb(0 205 184 / 6%);
+    }
+    .number-art::before, .number-art::after { background: rgb(0 205 184 / 46%); }
+    .equation {
+      padding: 21px 24px;
+      color: #c1d2d7;
+      background: #0b1c23;
+      border: 1px solid #3b666d;
+      box-shadow: 0 0 28px rgb(0 0 0 / 35%);
+      font-size: 16px;
+    }
+    .equation strong { color: var(--green); }
+    .equation span:last-child { color: var(--coral); }
+
+    .bio-section { background: #0d171e; }
+    .bio-stamp {
+      position: relative;
+      min-height: 275px;
+      overflow: hidden;
+      background: #11252c;
+      border: 1px solid #31515a;
+      border-radius: 3px;
+    }
+    .bio-stamp::after {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 52px;
+      height: 52px;
+      border: 1px solid rgb(0 205 184 / 35%);
+      content: "+";
+      display: grid;
+      place-items: center;
+      color: var(--green);
+      font: 24px var(--mono);
+    }
+    .bio-stamp .initials { color: var(--green); font-family: "Bahnschrift", "Aptos", sans-serif; font-weight: 700; }
+    .bio-stamp p { color: #a9bdc3; font-family: var(--mono); font-size: 11px; line-height: 1.7; }
+    .bio-copy h3 { font-weight: 600; }
+    .bio-copy > p { color: var(--muted); }
+    .bio-details { border-color: var(--line); }
+    .bio-details div { border-color: var(--line); }
+    .bio-details dt { color: #8299a2; font-family: var(--mono); letter-spacing: .5px; }
+    .bio-details dd { color: var(--ink); }
+
+    .learning-section {
+      background-color: #091117;
+      background-image: linear-gradient(rgb(76 118 128 / 6%) 1px, transparent 1px), linear-gradient(90deg, rgb(76 118 128 / 6%) 1px, transparent 1px);
+      background-size: 32px 32px;
+      border-top: 1px solid #1f353e;
+    }
+    .subtitle-required { color: #c0d0d4; }
+    .course-tag {
+      color: var(--lime);
+      background: #172a2c;
+      border: 1px solid #456044;
+      border-radius: 2px;
+    }
+    .tool {
+      background: #101b23;
+      border: 1px solid #293e47;
+      border-top: 2px solid var(--green);
+      border-radius: 3px;
+      box-shadow: 0 12px 30px rgb(0 0 0 / 16%);
+      transition: border-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+    }
+    .tool:hover {
+      border-color: #3a6269;
+      border-top-color: var(--lime);
+      box-shadow: 0 16px 34px rgb(0 0 0 / 24%);
+      transform: translateY(-3px);
+    }
+    .tool-number {
+      color: var(--green);
+      background: #102b30;
+      border: 1px solid #28504f;
+      border-radius: 2px;
+    }
+    .tool-head p { color: #91a5ad; }
+    .control label { color: #b7c8cd; font-family: var(--mono); font-size: 11px; }
+    .control input, .control select {
+      color: #edf6f6;
+      background: #09141a;
+      border-color: #344b55;
+      border-radius: 2px;
+    }
+    .control input:focus, .control select:focus { border-color: var(--green); }
+    .tool button {
+      color: #06151a;
+      background: var(--green);
+      border-radius: 2px;
+      transition: background-color 150ms ease, box-shadow 150ms ease;
+    }
+    .tool button:hover { background: #57ead7; box-shadow: 0 0 20px rgb(0 205 184 / 18%); }
+    .tool-result {
+      background: #0b2025;
+      border: 1px solid #24494b;
+      border-left: 3px solid var(--lime);
+      border-radius: 2px;
+    }
+    .result-main { color: #b7ffef; font-family: var(--mono); font-size: 16px; }
+    .result-detail { color: #9eb4b8; }
+    .message { color: #ff9a7f; }
+    .base-item { background: #0c181e; border-color: #2a4048; border-radius: 2px; }
+    .base-item span { color: #91a5ad; font-family: var(--mono); }
+    .base-item strong { color: var(--lime); }
+    .concept-note {
+      color: #aabcc0;
+      background: #101c23;
+      border-color: #293e47;
+      border-radius: 3px;
+    }
+    .concept-note strong { color: var(--green); }
+    .site-footer { color: #91a8ad; background: #061015; border-top: 1px solid #263d43; font-family: var(--mono); }
+
+    @media (max-width: 760px) {
+      h1 { font-size: 52px; }
+      h2 { font-size: 40px; }
+      .hero-inner { min-height: auto; }
+    }
+    @media (max-width: 560px) {
+      h1 { font-size: 42px; }
+      h2 { font-size: 34px; }
+      .hero-inner { padding: 42px 0; }
+      .number-art { min-height: 190px; }
+      .equation { gap: 8px; padding: 16px; font-size: 13px; }
+      .tool:hover { transform: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-link, .tool, .tool button { transition: none; }
+    }
   </style>
 </head>
 <body>
@@ -421,14 +618,14 @@
           <p>PROFIL MAHASISWA<br>Matematika Informatika · 2026/2027</p>
         </div>
         <div class="bio-copy">
-          <p class="section-kicker">Bio Data</p>
+          <p class="section-kicker">Tentang saya</p>
           <h3>Belajar, mencoba, lalu memahami.</h3>
           <p>Halaman ini menjadi catatan perjalanan belajar dan tempat mencoba konsep Matematika Informatika secara interaktif. Lengkapi bagian biodata berikut dengan informasi pribadi.</p>
           <dl class="bio-details">
-            <div><dt>Nama</dt><dd>[Toyib Abdul Rahman]</dd></div>
-            <div><dt>NIM</dt><dd>[262605006]</dd></div>
-            <div><dt>Program Studi</dt><dd>[SISTEM INFORMASI]</dd></div>
-            <div><dt>Universitas</dt><dd>[MASOEM UNIVERSITY]</dd></div>
+            <div><dt>Nama</dt><dd>[Nama Mahasiswa]</dd></div>
+            <div><dt>NIM</dt><dd>[Nomor Induk Mahasiswa]</dd></div>
+            <div><dt>Program Studi</dt><dd>[Program Studi]</dd></div>
+            <div><dt>Perguruan Tinggi</dt><dd>[Nama Perguruan Tinggi]</dd></div>
           </dl>
         </div>
       </div>
@@ -439,200 +636,3 @@
         <div class="learning-title-row">
           <div class="section-heading">
             <p class="section-kicker">Catatan kuliah · 01—04</p>
-            <h2>Bukti Belajar</h2>
-            <p class="section-intro subtitle-required">Perjalanan belajar Matematika Informatika bersama Pa Iin TA 20261</p>
-          </div>
-          <span class="course-tag">MATEMATIKA × KOMPUTASI</span>
-        </div>
-
-        <div class="tool-grid">
-          <article class="tool">
-            <div class="tool-head">
-              <span class="tool-number">01</span>
-              <div><h3>Modulo Calculator</h3><p>Mencari sisa pembagian bilangan bulat.</p></div>
-            </div>
-            <form data-calculator="modulo" novalidate>
-              <div class="control-grid">
-                <div class="control"><label for="mod-a">Bilangan a</label><input id="mod-a" name="a" type="text" inputmode="numeric" value="17"></div>
-                <div class="control"><label for="mod-m">Modulus m</label><input id="mod-m" name="m" type="text" inputmode="numeric" value="5"></div>
-              </div>
-              <button type="submit">Hitung</button>
-              <p class="message" aria-live="polite"></p>
-              <div class="tool-result" hidden aria-live="polite"><p class="result-main"></p><p class="result-detail"></p></div>
-            </form>
-          </article>
-
-          <article class="tool">
-            <div class="tool-head">
-              <span class="tool-number">02</span>
-              <div><h3>Congruence Checker</h3><p>Memeriksa apakah dua bilangan kongruen.</p></div>
-            </div>
-            <form data-calculator="congruence" novalidate>
-              <div class="control-grid">
-                <div class="control"><label for="cong-a">Bilangan a</label><input id="cong-a" name="a" type="text" inputmode="numeric" value="17"></div>
-                <div class="control"><label for="cong-b">Bilangan b</label><input id="cong-b" name="b" type="text" inputmode="numeric" value="2"></div>
-                <div class="control"><label for="cong-m">Modulus m</label><input id="cong-m" name="m" type="text" inputmode="numeric" value="5"></div>
-              </div>
-              <button type="submit">Periksa Kongruensi</button>
-              <p class="message" aria-live="polite"></p>
-              <div class="tool-result" hidden aria-live="polite"><p class="result-main"></p><p class="result-detail"></p></div>
-            </form>
-          </article>
-
-          <article class="tool">
-            <div class="tool-head">
-              <span class="tool-number">03</span>
-              <div><h3>Number System</h3><p>Konversi bilangan di antara empat basis.</p></div>
-            </div>
-            <form data-calculator="base" novalidate>
-              <div class="control-grid">
-                <div class="control"><label for="base-value">Bilangan</label><input id="base-value" name="value" type="text" value="1010" autocomplete="off"></div>
-                <div class="control"><label for="base-select">Basis asal</label><select id="base-select" name="base"><option value="2">Biner (2)</option><option value="10">Desimal (10)</option><option value="8">Oktal (8)</option><option value="16">Heksadesimal (16)</option></select></div>
-              </div>
-              <button type="submit">Konversi</button>
-              <p class="message" aria-live="polite"></p>
-              <div class="tool-result" hidden aria-live="polite">
-                <p class="result-main">Hasil konversi</p>
-                <div class="base-results">
-                  <div class="base-item"><span>Biner · 2</span><strong data-base="2"></strong></div>
-                  <div class="base-item"><span>Desimal · 10</span><strong data-base="10"></strong></div>
-                  <div class="base-item"><span>Oktal · 8</span><strong data-base="8"></strong></div>
-                  <div class="base-item"><span>Heksadesimal · 16</span><strong data-base="16"></strong></div>
-                </div>
-              </div>
-            </form>
-          </article>
-
-          <article class="tool">
-            <div class="tool-head">
-              <span class="tool-number">04</span>
-              <div><h3>Combinatorics</h3><p>Menghitung permutasi dan kombinasi.</p></div>
-            </div>
-            <form data-calculator="combinatorics" novalidate>
-              <div class="control-grid">
-                <div class="control"><label for="comb-n">n</label><input id="comb-n" name="n" type="text" inputmode="numeric" value="5"></div>
-                <div class="control"><label for="comb-r">r</label><input id="comb-r" name="r" type="text" inputmode="numeric" value="2"></div>
-              </div>
-              <button type="submit">Hitung</button>
-              <p class="message" aria-live="polite"></p>
-              <div class="tool-result" hidden aria-live="polite"><p class="result-main"></p><p class="result-detail"></p></div>
-            </form>
-          </article>
-        </div>
-
-        <aside class="concept-note"><strong>Catatan konsep.</strong> Permutasi memperhatikan urutan, sedangkan kombinasi hanya menghitung pemilihan tanpa memperhatikan urutan. Untuk kongruensi, a ≡ b (mod m) tepat ketika m membagi (a − b).</aside>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="footer-inner"><p>Ruang Belajar · Matematika Informatika</p><p>Dokumentasi perjalanan belajar · TA 20261</p></div>
-  </footer>
-
-  <script>
-    const integerPattern = /^[+-]?\d+$/;
-
-    function setResult(form, primary, detail) {
-      const panel = form.querySelector(".tool-result");
-      panel.querySelector(".result-main").textContent = primary;
-      const detailElement = panel.querySelector(".result-detail");
-      if (detailElement) detailElement.textContent = detail;
-      panel.hidden = false;
-      form.querySelector(".message").textContent = "";
-    }
-
-    function showError(form, message, input) {
-      form.querySelector(".message").textContent = message;
-      form.querySelector(".tool-result").hidden = true;
-      if (input) input.focus();
-    }
-
-    function readInteger(form, name, label) {
-      const input = form.elements[name];
-      const text = input.value.trim();
-      if (!integerPattern.test(text)) throw { message: `${label} harus berupa bilangan bulat.`, input };
-      return BigInt(text);
-    }
-
-    document.querySelectorAll("form[data-calculator]").forEach((form) => {
-      form.addEventListener("submit", (event) => {
-        event.preventDefault();
-        form.querySelector(".message").textContent = "";
-        form.querySelector(".tool-result").hidden = true;
-
-        try {
-          const calculator = form.dataset.calculator;
-          if (calculator === "modulo") calculateModulo(form);
-          if (calculator === "congruence") calculateCongruence(form);
-          if (calculator === "base") calculateBase(form);
-          if (calculator === "combinatorics") calculateCombinatorics(form);
-        } catch (error) {
-          if (error && error.message) showError(form, error.message, error.input);
-          else showError(form, "Input tidak dapat diproses.");
-        }
-      });
-    });
-
-    function calculateModulo(form) {
-      const a = readInteger(form, "a", "Bilangan a");
-      const m = readInteger(form, "m", "Modulus");
-      if (m <= 0n) throw { message: "Modulus harus merupakan bilangan bulat positif.", input: form.elements.m };
-      const remainder = ((a % m) + m) % m;
-      const quotient = (a - remainder) / m;
-      setResult(form, `${a} mod ${m} = ${remainder}`, `${a} = (${quotient}) × ${m} + ${remainder}`);
-    }
-
-    function calculateCongruence(form) {
-      const a = readInteger(form, "a", "Bilangan a");
-      const b = readInteger(form, "b", "Bilangan b");
-      const m = readInteger(form, "m", "Modulus");
-      if (m <= 0n) throw { message: "Modulus harus merupakan bilangan bulat positif.", input: form.elements.m };
-      const difference = a - b;
-      const isCongruent = difference % m === 0n;
-      const status = isCongruent ? "KONGRUEN" : "TIDAK KONGRUEN";
-      setResult(form, `${a} ${isCongruent ? "≡" : "≢"} ${b} (mod ${m}) · ${status}`, `${a} − ${b} = ${difference}; ${m} ${isCongruent ? "membagi" : "tidak membagi"} ${difference}.`);
-    }
-
-    function calculateBase(form) {
-      const input = form.elements.value;
-      const text = input.value.trim();
-      const base = Number(form.elements.base.value);
-      const digits = "0123456789ABCDEF";
-      const unsigned = text.replace(/^[+-]/, "").toUpperCase();
-      const sign = text.startsWith("-") ? -1n : 1n;
-      const valid = unsigned.length > 0 && [...unsigned].every((digit) => digits.indexOf(digit) >= 0 && digits.indexOf(digit) < base);
-      if (!valid) throw { message: `Bilangan tidak valid untuk basis ${base}.`, input };
-
-      let value = 0n;
-      for (const digit of unsigned) value = value * BigInt(base) + BigInt(digits.indexOf(digit));
-      value *= sign;
-      const panel = form.querySelector(".tool-result");
-      panel.querySelector(".result-main").textContent = "Hasil konversi";
-      panel.querySelector(".base-results").querySelectorAll("[data-base]").forEach((item) => {
-        const targetBase = Number(item.dataset.base);
-        item.textContent = value.toString(targetBase).toUpperCase();
-      });
-      panel.hidden = false;
-    }
-
-    function calculateCombinatorics(form) {
-      const n = readInteger(form, "n", "n");
-      const r = readInteger(form, "r", "r");
-      if (n < 0n || r < 0n || r > n) throw { message: "Masukkan n dan r dengan ketentuan 0 ≤ r ≤ n.", input: form.elements.r };
-      if (n > 5000n) throw { message: "Nilai n maksimum 5000 agar perhitungan tetap responsif.", input: form.elements.n };
-
-      let permutation = 1n;
-      for (let index = 0n; index < r; index++) permutation *= n - index;
-
-      const count = r < n - r ? r : n - r;
-      let combination = 1n;
-      for (let index = 1n; index <= count; index++) {
-        combination = combination * (n - count + index) / index;
-      }
-
-      const detail = `P(${n},${r}) = ${n}!/(${n}-${r})! = ${permutation}\nC(${n},${r}) = ${n}!/(${r}!(${n}-${r})!) = ${combination}`;
-      setResult(form, `P(${n},${r}) = ${permutation}  ·  C(${n},${r}) = ${combination}`, detail);
-    }
-  </script>
-</body>
-</html>
