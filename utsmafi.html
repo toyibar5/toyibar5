@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kalkulator Aritmetika Modular</title>
+  <style>
+    :root {
+      font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+      color: #172d28;
+      background: #f2f5ef;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      padding: 24px;
+      display: grid;
+      place-items: center;
+      background-image: radial-gradient(#cbd6c8 0.7px, transparent 0.7px);
+      background-size: 18px 18px;
+    }
+
+    main {
+      width: min(100%, 500px);
+      overflow: hidden;
+      background: #fffefa;
+      border: 1px solid #dce4da;
+      border-radius: 10px;
+      box-shadow: 0 18px 50px #172d2818;
+    }
+
+    header {
+      padding: 28px;
+      color: #f8fff8;
+      background: #176b52;
+    }
+
+    header p {
+      margin: 0 0 10px;
+      color: #d8f078;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font: 500 28px/1.15 Georgia, "Times New Roman", serif;
+    }
+
+    header .subtitle {
+      margin: 12px 0 0;
+      color: #d7e8df;
+      font-size: 14px;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+
+    form { padding: 28px; }
+
+    .fields {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    input {
+      width: 100%;
+      height: 46px;
+      padding: 0 12px;
+      border: 1px solid #bdcbc0;
+      border-radius: 5px;
+      color: inherit;
+      background: white;
+      font: inherit;
+      font-size: 16px;
+    }
+
+    input:focus-visible, button:focus-visible {
+      outline: 3px solid #e4755d;
+      outline-offset: 2px;
+    }
+
+    .hint {
+      margin: 7px 0 0;
+      color: #64736d;
+      font-size: 12px;
+    }
+
+    button {
+      width: 100%;
+      min-height: 46px;
+      margin-top: 22px;
+      border: 0;
+      border-radius: 5px;
+      color: white;
+      background: #10513e;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    button:hover { background: #176b52; }
+
+    .error {
+      margin: 12px 0 0;
+      color: #a4382b;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .result {
+      margin: 0 28px 24px;
+      padding: 18px;
+      background: #f0f5e9;
+      border-left: 4px solid #e4755d;
+      border-radius: 4px;
+    }
+
+    .result[hidden] { display: none; }
+
+    .result-label {
+      margin: 0 0 8px;
+      color: #64736d;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    output {
+      display: block;
+      color: #10513e;
+      font: 28px/1.25 Georgia, "Times New Roman", serif;
+      overflow-wrap: anywhere;
+    }
+
+    .steps {
+      margin: 10px 0 0;
+      font-size: 14px;
+      line-height: 1.5;
+      overflow-wrap: anywhere;
+    }
+
+    footer {
+      padding: 16px 28px;
+      border-top: 1px solid #dce4da;
+      color: #64736d;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    footer strong { color: #172d28; }
+
+    @media (max-width: 440px) {
+      body { padding: 14px; }
+      header, form { padding: 22px; }
+      .fields { grid-template-columns: 1fr; gap: 14px; }
+      .result { margin: 0 22px 22px; }
+      footer { padding: 15px 22px; }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      main { animation: appear 350ms ease-out both; }
+      @keyframes appear {
+        from { opacity: 0; transform: translateY(8px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <p>Laboratorium bilangan</p>
+      <h1>Kalkulator Aritmetika Modular</h1>
+      <p class="subtitle">Temukan sisa pembagian beserta prosesnya.</p>
+    </header>
+
+    <form id="modulo-form" novalidate>
+      <div class="fields">
+        <div>
+          <label for="bilangan">Bilangan bulat (a)</label>
+          <input id="bilangan" type="text" inputmode="numeric" value="17">
+          <p class="hint">Boleh positif atau negatif.</p>
+        </div>
+        <div>
+          <label for="modulus">Modulus (m)</label>
+          <input id="modulus" type="text" inputmode="numeric" value="5">
+          <p class="hint">Harus berupa bilangan bulat positif.</p>
+        </div>
+      </div>
+      <button type="submit">Hitung modulo</button>
+      <p id="error" class="error" role="alert"></p>
+    </form>
+
+    <section id="result" class="result" aria-live="polite" hidden>
+      <p class="result-label">Sisa pembagian</p>
+      <output id="answer"></output>
+      <p id="steps" class="steps"></p>
+    </section>
+
+    <footer>
+      <strong>Ingat:</strong> modulo menghasilkan sisa pembagian. Untuk bilangan negatif,
+      hasil ditulis antara 0 dan m - 1.
+    </footer>
+  </main>
+
+  <script>
+    const form = document.getElementById("modulo-form");
+    const numberInput = document.getElementById("bilangan");
+    const modulusInput = document.getElementById("modulus");
+    const result = document.getElementById("result");
+    const answer = document.getElementById("answer");
+    const steps = document.getElementById("steps");
+    const error = document.getElementById("error");
+    const integerPattern = /^[+-]?\d+$/;
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      error.textContent = "";
+
+      const numberText = numberInput.value.trim();
+      const modulusText = modulusInput.value.trim();
+
+      if (!integerPattern.test(numberText)) {
+        showError("Masukkan a sebagai bilangan bulat.", numberInput);
+        return;
+      }
+
+      if (!integerPattern.test(modulusText)) {
+        showError("Masukkan modulus sebagai bilangan bulat.", modulusInput);
+        return;
+      }
+
+      const a = BigInt(numberText);
+      const m = BigInt(modulusText);
+
+      if (m <= 0n) {
+        showError("Modulus harus merupakan bilangan bulat positif.", modulusInput);
+        return;
+      }
+
+      // Normalisasi memastikan sisa tetap positif saat a negatif.
+      const remainder = ((a % m) + m) % m;
+      const quotient = (a - remainder) / m;
+
+      answer.textContent = `${a} mod ${m} = ${remainder}`;
+      steps.textContent =
+        `${a} = (${quotient}) × ${m} + ${remainder}. Jadi, sisanya adalah ${remainder}.`;
+      result.hidden = false;
+    });
+
+    function showError(message, input) {
+      error.textContent = message;
+      result.hidden = true;
+      input.focus();
+    }
+  </script>
+</body>
+</html>
