@@ -484,8 +484,10 @@
       color: var(--green);
       font: 24px var(--mono);
     }
-    .bio-stamp .initials { color: var(--green); font-family: "Bahnschrift", "Aptos", sans-serif; font-weight: 700; }
+    .bio-stamp { display: block; min-height: 0; padding: 0; }
+    .profile-photo { display: block; width: 100%; height: auto; }
     .bio-stamp p { color: #a9bdc3; font-family: var(--mono); font-size: 11px; line-height: 1.7; }
+    .bio-stamp p { padding: 13px 18px; background: #0b1c23; }
     .bio-copy h3 { font-weight: 600; }
     .bio-copy > p { color: var(--muted); }
     .bio-details { border-color: var(--line); }
@@ -614,7 +616,7 @@
     <section class="section bio-section" id="biodata">
       <div class="section-inner bio-layout">
         <div class="bio-stamp">
-          <span class="initials" aria-hidden="true">MI</span>
+          <img class="profile-photo" src="https://raw.githubusercontent.com/toyibar5/toyibar5/main/IMG_3204.jpg.jpeg" alt="Foto profil mahasiswa" loading="lazy" decoding="async">
           <p>PROFIL MAHASISWA<br>Matematika Informatika · 2026/2027</p>
         </div>
         <div class="bio-copy">
