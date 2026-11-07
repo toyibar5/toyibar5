@@ -636,3 +636,200 @@
         <div class="learning-title-row">
           <div class="section-heading">
             <p class="section-kicker">Catatan kuliah · 01—04</p>
+            <h2>Bukti Belajar</h2>
+            <p class="section-intro subtitle-required">Perjalanan belajar Matematika Informatika bersama Pa Iin TA 20261</p>
+          </div>
+          <span class="course-tag">MATEMATIKA × KOMPUTASI</span>
+        </div>
+
+        <div class="tool-grid">
+          <article class="tool">
+            <div class="tool-head">
+              <span class="tool-number">01</span>
+              <div><h3>Modulo Calculator</h3><p>Mencari sisa pembagian bilangan bulat.</p></div>
+            </div>
+            <form data-calculator="modulo" novalidate>
+              <div class="control-grid">
+                <div class="control"><label for="mod-a">Bilangan a</label><input id="mod-a" name="a" type="text" inputmode="numeric" value="17"></div>
+                <div class="control"><label for="mod-m">Modulus m</label><input id="mod-m" name="m" type="text" inputmode="numeric" value="5"></div>
+              </div>
+              <button type="submit">Hitung</button>
+              <p class="message" aria-live="polite"></p>
+              <div class="tool-result" hidden aria-live="polite"><p class="result-main"></p><p class="result-detail"></p></div>
+            </form>
+          </article>
+
+          <article class="tool">
+            <div class="tool-head">
+              <span class="tool-number">02</span>
+              <div><h3>Congruence Checker</h3><p>Memeriksa apakah dua bilangan kongruen.</p></div>
+            </div>
+            <form data-calculator="congruence" novalidate>
+              <div class="control-grid">
+                <div class="control"><label for="cong-a">Bilangan a</label><input id="cong-a" name="a" type="text" inputmode="numeric" value="17"></div>
+                <div class="control"><label for="cong-b">Bilangan b</label><input id="cong-b" name="b" type="text" inputmode="numeric" value="2"></div>
+                <div class="control"><label for="cong-m">Modulus m</label><input id="cong-m" name="m" type="text" inputmode="numeric" value="5"></div>
+              </div>
+              <button type="submit">Periksa Kongruensi</button>
+              <p class="message" aria-live="polite"></p>
+              <div class="tool-result" hidden aria-live="polite"><p class="result-main"></p><p class="result-detail"></p></div>
+            </form>
+          </article>
+
+          <article class="tool">
+            <div class="tool-head">
+              <span class="tool-number">03</span>
+              <div><h3>Number System</h3><p>Konversi bilangan di antara empat basis.</p></div>
+            </div>
+            <form data-calculator="base" novalidate>
+              <div class="control-grid">
+                <div class="control"><label for="base-value">Bilangan</label><input id="base-value" name="value" type="text" value="1010" autocomplete="off"></div>
+                <div class="control"><label for="base-select">Basis asal</label><select id="base-select" name="base"><option value="2">Biner (2)</option><option value="10">Desimal (10)</option><option value="8">Oktal (8)</option><option value="16">Heksadesimal (16)</option></select></div>
+              </div>
+              <button type="submit">Konversi</button>
+              <p class="message" aria-live="polite"></p>
+              <div class="tool-result" hidden aria-live="polite">
+                <p class="result-main">Hasil konversi</p>
+                <div class="base-results">
+                  <div class="base-item"><span>Biner · 2</span><strong data-base="2"></strong></div>
+                  <div class="base-item"><span>Desimal · 10</span><strong data-base="10"></strong></div>
+                  <div class="base-item"><span>Oktal · 8</span><strong data-base="8"></strong></div>
+                  <div class="base-item"><span>Heksadesimal · 16</span><strong data-base="16"></strong></div>
+                </div>
+              </div>
+            </form>
+          </article>
+
+          <article class="tool">
+            <div class="tool-head">
+              <span class="tool-number">04</span>
+              <div><h3>Combinatorics</h3><p>Menghitung permutasi dan kombinasi.</p></div>
+            </div>
+            <form data-calculator="combinatorics" novalidate>
+              <div class="control-grid">
+                <div class="control"><label for="comb-n">n</label><input id="comb-n" name="n" type="text" inputmode="numeric" value="5"></div>
+                <div class="control"><label for="comb-r">r</label><input id="comb-r" name="r" type="text" inputmode="numeric" value="2"></div>
+              </div>
+              <button type="submit">Hitung</button>
+              <p class="message" aria-live="polite"></p>
+              <div class="tool-result" hidden aria-live="polite"><p class="result-main"></p><p class="result-detail"></p></div>
+            </form>
+          </article>
+        </div>
+
+        <aside class="concept-note"><strong>Catatan konsep.</strong> Permutasi memperhatikan urutan, sedangkan kombinasi hanya menghitung pemilihan tanpa memperhatikan urutan. Untuk kongruensi, a ≡ b (mod m) tepat ketika m membagi (a − b).</aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner"><p>Ruang Belajar · Matematika Informatika</p><p>Dokumentasi perjalanan belajar · TA 20261</p></div>
+  </footer>
+
+  <script>
+    const integerPattern = /^[+-]?\d+$/;
+
+    function setResult(form, primary, detail) {
+      const panel = form.querySelector(".tool-result");
+      panel.querySelector(".result-main").textContent = primary;
+      const detailElement = panel.querySelector(".result-detail");
+      if (detailElement) detailElement.textContent = detail;
+      panel.hidden = false;
+      form.querySelector(".message").textContent = "";
+    }
+
+    function showError(form, message, input) {
+      form.querySelector(".message").textContent = message;
+      form.querySelector(".tool-result").hidden = true;
+      if (input) input.focus();
+    }
+
+    function readInteger(form, name, label) {
+      const input = form.elements[name];
+      const text = input.value.trim();
+      if (!integerPattern.test(text)) throw { message: `${label} harus berupa bilangan bulat.`, input };
+      return BigInt(text);
+    }
+
+    document.querySelectorAll("form[data-calculator]").forEach((form) => {
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        form.querySelector(".message").textContent = "";
+        form.querySelector(".tool-result").hidden = true;
+
+        try {
+          const calculator = form.dataset.calculator;
+          if (calculator === "modulo") calculateModulo(form);
+          if (calculator === "congruence") calculateCongruence(form);
+          if (calculator === "base") calculateBase(form);
+          if (calculator === "combinatorics") calculateCombinatorics(form);
+        } catch (error) {
+          if (error && error.message) showError(form, error.message, error.input);
+          else showError(form, "Input tidak dapat diproses.");
+        }
+      });
+    });
+
+    function calculateModulo(form) {
+      const a = readInteger(form, "a", "Bilangan a");
+      const m = readInteger(form, "m", "Modulus");
+      if (m <= 0n) throw { message: "Modulus harus merupakan bilangan bulat positif.", input: form.elements.m };
+      const remainder = ((a % m) + m) % m;
+      const quotient = (a - remainder) / m;
+      setResult(form, `${a} mod ${m} = ${remainder}`, `${a} = (${quotient}) × ${m} + ${remainder}`);
+    }
+
+    function calculateCongruence(form) {
+      const a = readInteger(form, "a", "Bilangan a");
+      const b = readInteger(form, "b", "Bilangan b");
+      const m = readInteger(form, "m", "Modulus");
+      if (m <= 0n) throw { message: "Modulus harus merupakan bilangan bulat positif.", input: form.elements.m };
+      const difference = a - b;
+      const isCongruent = difference % m === 0n;
+      const status = isCongruent ? "KONGRUEN" : "TIDAK KONGRUEN";
+      setResult(form, `${a} ${isCongruent ? "≡" : "≢"} ${b} (mod ${m}) · ${status}`, `${a} − ${b} = ${difference}; ${m} ${isCongruent ? "membagi" : "tidak membagi"} ${difference}.`);
+    }
+
+    function calculateBase(form) {
+      const input = form.elements.value;
+      const text = input.value.trim();
+      const base = Number(form.elements.base.value);
+      const digits = "0123456789ABCDEF";
+      const unsigned = text.replace(/^[+-]/, "").toUpperCase();
+      const sign = text.startsWith("-") ? -1n : 1n;
+      const valid = unsigned.length > 0 && [...unsigned].every((digit) => digits.indexOf(digit) >= 0 && digits.indexOf(digit) < base);
+      if (!valid) throw { message: `Bilangan tidak valid untuk basis ${base}.`, input };
+
+      let value = 0n;
+      for (const digit of unsigned) value = value * BigInt(base) + BigInt(digits.indexOf(digit));
+      value *= sign;
+      const panel = form.querySelector(".tool-result");
+      panel.querySelector(".result-main").textContent = "Hasil konversi";
+      panel.querySelector(".base-results").querySelectorAll("[data-base]").forEach((item) => {
+        const targetBase = Number(item.dataset.base);
+        item.textContent = value.toString(targetBase).toUpperCase();
+      });
+      panel.hidden = false;
+    }
+
+    function calculateCombinatorics(form) {
+      const n = readInteger(form, "n", "n");
+      const r = readInteger(form, "r", "r");
+      if (n < 0n || r < 0n || r > n) throw { message: "Masukkan n dan r dengan ketentuan 0 ≤ r ≤ n.", input: form.elements.r };
+      if (n > 5000n) throw { message: "Nilai n maksimum 5000 agar perhitungan tetap responsif.", input: form.elements.n };
+
+      let permutation = 1n;
+      for (let index = 0n; index < r; index++) permutation *= n - index;
+
+      const count = r < n - r ? r : n - r;
+      let combination = 1n;
+      for (let index = 1n; index <= count; index++) {
+        combination = combination * (n - count + index) / index;
+      }
+
+      const detail = `P(${n},${r}) = ${n}!/(${n}-${r})! = ${permutation}\nC(${n},${r}) = ${n}!/(${r}!(${n}-${r})!) = ${combination}`;
+      setResult(form, `P(${n},${r}) = ${permutation}  ·  C(${n},${r}) = ${combination}`, detail);
+    }
+  </script>
+</body>
+</html>
